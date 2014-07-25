@@ -92,3 +92,9 @@ Example config
       (util-put-alist 'prv new-ffip-dirs fuzzy-find-roots)
       ;; make FFIP notice the change in in dirs
       (fuzzy-find-choose-root-set "prv"))
+
+
+Screenshot
+----------
+
+![screenshot](https://raw.githubusercontent.com/piotrklibert/ffip/master/img/ffip-screenshot.png)
