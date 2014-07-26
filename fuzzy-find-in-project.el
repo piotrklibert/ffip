@@ -1,8 +1,12 @@
 (require 's)
-(require 'cl)
 (require 'dash)
 (require 'thingatpt)
 
+
+(eval-when-compile
+  (require 'cl))
+
+(load "./alist-util.el")
 
 (defmacro ffip-defroots (current commons &rest alist)
   (declare (indent defun))
