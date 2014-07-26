@@ -58,41 +58,42 @@ Example config
 
 (taken from my .emacs)
 
-    ;; fuzzy-find configuration, defines named directory groups for easy changing
-    ;; between them and current/default group for use before the root is changed
-    ;; explicitly
-    (ffip-defroots 'prv ("~/todo/")
-      (tag . ("/usr/www/tagasauris/tagasauris/"
-              "/usr/www/tagasauris/src/tenclouds/tenclouds/"
-              "/usr/www/tagasauris/control/"
-              "/usr/www/tagasauris/config/"
-              "/usr/www/tagasauris/doc/"))
-      (ion . ("~/ion/code/"))
-      (sp  . ("~/smartpatient/smartpatient-web/smartpatient/"))
-      (prv . ("~/mgmnt/" "~/priv/"
-              "~/.emacs.d/pkg-langs/elpy/"
-              "~/.emacs.d/config/"
-              "~/.emacs.d/plugins2/"
-              "~/.emacs.d/pkg-langs/")))
+```elisp
+;; fuzzy-find configuration, defines named directory groups for easy changing
+;; between them and current/default group for use before the root is changed
+;; explicitly
+(ffip-defroots 'prv ("~/todo/")
+  (tag . ("/usr/www/tagasauris/tagasauris/"
+          "/usr/www/tagasauris/src/tenclouds/tenclouds/"
+          "/usr/www/tagasauris/control/"
+          "/usr/www/tagasauris/config/"
+          "/usr/www/tagasauris/doc/"))
+  (ion . ("~/ion/code/"))
+  (sp  . ("~/smartpatient/smartpatient-web/smartpatient/"))
+  (prv . ("~/mgmnt/" "~/priv/"
+          "~/.emacs.d/pkg-langs/elpy/"
+          "~/.emacs.d/config/"
+          "~/.emacs.d/plugins2/"
+          "~/.emacs.d/pkg-langs/")))
 
-    ;; There's a bit of a mess in my "misc projects" folder, and some of its
-    ;; directories have much too many files in them, so I need to prune them before
-    ;; adding them to `fuzzy-find-roots'.
-    (require 'f)
-    (lexical-let*
-        ((ignored (--map (f-expand (f-join "~/poligon/" it))
-                         '("books-dedup" "django-debug-toolbar"
-                           "django-rest-framework" "haxe"
-                           "old_web_app_template" "poligon")))
-         (subdirs (f-directories (f-expand "~/poligon/")
-                                 (lambda (path)
-                                   (not (-contains? ignored path)))))
-         (new-ffip-dirs (append (util-get-alist 'prv fuzzy-find-roots)
-                                subdirs)))
-      (util-put-alist 'prv new-ffip-dirs fuzzy-find-roots)
-      ;; make FFIP notice the change in in dirs
-      (fuzzy-find-choose-root-set "prv"))
-
+;; There's a bit of a mess in my "misc projects" folder, and some of its
+;; directories have much too many files in them, so I need to prune them before
+;; adding them to `fuzzy-find-roots'.
+(require 'f)
+(lexical-let*
+    ((ignored (--map (f-expand (f-join "~/poligon/" it))
+                     '("books-dedup" "django-debug-toolbar"
+                       "django-rest-framework" "haxe"
+                       "old_web_app_template" "poligon")))
+     (subdirs (f-directories (f-expand "~/poligon/")
+                             (lambda (path)
+                               (not (-contains? ignored path)))))
+     (new-ffip-dirs (append (util-get-alist 'prv fuzzy-find-roots)
+                            subdirs)))
+  (util-put-alist 'prv new-ffip-dirs fuzzy-find-roots)
+  ;; make FFIP notice the change in in dirs
+  (fuzzy-find-choose-root-set "prv"))
+```
 
 Screenshot
 ----------
