@@ -1,5 +1,6 @@
-# Fuzzy Find in Project (ffip) - `fuzzy_file_finder` for Emacs. #
+# Fuzzy Find in Project (ffip) #
 
+## `fuzzy_file_finder` for Emacs. ##
 
 ## Commentary ##
 
